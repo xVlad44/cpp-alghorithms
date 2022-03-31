@@ -42,3 +42,45 @@ void oglindire(nod *&prim){
     }
     prim=last;
 }
+//#3801
+struct Nod
+{
+    int info;
+    Nod *leg;
+};
+
+void LsiInterclasare(Nod *nod1, Nod *nod2, Nod *&final){
+
+    Nod *aux;
+
+    if(nod1->info<=nod2->info){
+        final=nod1;
+        nod1 = nod1->leg;
+    }else {
+        final=nod2;
+        nod2=nod2->leg;
+    }
+
+    while(nod1&&nod2){
+        if(nod1->info<=nod2->info){
+            aux->leg=nod1;
+            aux=nod1;
+            nod1=nod1->leg;
+        }
+        else{
+            aux->leg=nod2;
+            aux=nod2;
+            nod2=nod2->leg;
+        }
+    }
+    while(nod1){
+        aux->leg=nod1;
+        aux=nod1;
+        nod1=nod1->leg;
+    }
+    while(nod2){
+        aux->leg=nod2;
+        aux=nod2;
+        nod2=nod2->leg;
+    }
+}
